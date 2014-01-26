@@ -13,6 +13,14 @@ Established in <%= @brewery.year %>
  <%= link_to beer.name, beer %>
  <% end %>
 </p>
+<% if @brewery.ratings.empty? %>
+<p>No ratings</p>
+<% else %>
+<p>
+	Has <%= pluralize(@brewery.ratings.count, "rating") %>, 
+	average <%= @brewery.average_rating %>
+</p>
+<% end %>
 
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
-<%= link_to 'Back', breweries_path %>
+
