@@ -1,5 +1,14 @@
 Ratebeer::Application.routes.draw do
 
+  resources :users
+
+  get 'signup', to: 'users#new'
+
+  get 'signin', to: 'sessions#new'
+  delete 'signout', to: 'sessions#destroy'
+
+  resources :sessions, only: [:new, :create]
+
   root 'breweries#index'
 
   get 'kaikki_bisset', to: 'beers#index'
