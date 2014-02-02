@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   	message: "requires at least one digit and one uppercase character"
   }
 
-  has_many :ratings   # käyttäjällä on monta ratingia
+  has_many :ratings,  dependent: :destroy # käyttäjällä on monta ratingia
   has_many :beers, through: :ratings
 
 end
