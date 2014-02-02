@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20140202200012) do
   end
 
   create_table "memberships", force: true do |t|
-    t.string   "beer_club_id"
-    t.string   "user_id"
+    t.integer  "beer_club_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
