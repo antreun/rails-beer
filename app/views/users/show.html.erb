@@ -3,6 +3,15 @@
 <p>
   <h1><%= @user.username %></h1>
 </p>
+<p>Member of 
+<% if @user.beer_clubs.empty? %>
+no clubs</p>
+<% else %>
+    <% @user.beer_clubs.each do |beer_club| %>
+        <%= link_to beer_club.name, beer_club %> 
+    <% end %>
+  <% end %>
+
 <% if @user.ratings.empty? %>
 <p>No ratings</p>
 <% else %>
@@ -23,6 +32,7 @@
       </li>
     <% end %>
   </ul>
+
 <% if @user == current_user %>
 	<%= link_to 'Edit', edit_user_path(@user) %> |
 	<%= link_to 'Destroy', @user, method: :delete, 
