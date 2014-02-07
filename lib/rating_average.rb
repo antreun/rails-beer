@@ -19,4 +19,5 @@ module RatingAverage
  		##{@score}"
 	end
   end
+
 end

@@ -20,4 +20,40 @@ class User < ActiveRecord::Base
   has_many :memberships, dependent: :destroy
   has_many :beer_clubs, through: :memberships
 
+  def favorite_beer
+    return nil if ratings.empty?   # palautetaan nil jos reittauksia ei ole
+    ratings.order(score: :desc).limit(1).first.beer
+  end
+
+  def favorite_style
+    # tämä ei varmasti ole mikään optimaalisin ratkaisu, mutta toimii!
+    return nil if ratings.empty?  
+    styles = Hash.new
+    count = Hash.new
+    ratings.each do |rating|
+      if styles[rating.beer.style].nil?
+        styles[rating.beer.style] = rating.score
+        count[rating.beer.style] = 1
+      else
+        styles[rating.beer.style] += rating.score
+        count[rating.beer.style] += 1
+      end
+    end
+    count.each do |c|
+      styles[c.first] /=  count[c.first]
+    end
+    styles.sort_by{|k,v| v}
+    styles.to_a.last.first
+  end
+
+  def favorite_brewery
+    return nil if ratings.empty?  
+    averages = Hash.new
+    b = Brewery.all
+    b.each do |brewery|
+      averages[brewery] = brewery.user_ratings(self)
+    end
+    averages.sort_by{|k,v| v}
+    averages.to_a.last.first
+end
 end

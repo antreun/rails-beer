@@ -31,6 +31,13 @@ class Brewery < ActiveRecord::Base
     puts "number of beers #{beers.count}"
     puts "number of ratings #{ratings.count}"
   end
+
+   def user_ratings(user)
+
+    self.ratings.where(user: user).average("score")
+
+   end
+
   
   def restart
     self.year = 2014

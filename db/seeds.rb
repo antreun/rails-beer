@@ -7,16 +7,54 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+u = User.create username:"Antti", password:"123QWE", password_confirmation:"123QWE"
+u2 = User.create username:"Testi", password:"123QWE", password_confirmation:"123QWE"
 
 b1 = Brewery.create name:"Koff", year:1897
 b2 = Brewery.create name:"Malmgard", year:2001
 b3 = Brewery.create name:"Weihenstephaner", year:1042
 
-b1.beers.create name:"Iso 3", style:"Lager"
-b1.beers.create name:"Karhu", style:"Lager"
-b1.beers.create name:"Tuplahumala", style:"Lager"
-b2.beers.create name:"Huvila Pale Ale", style:"Pale Ale"
-b2.beers.create name:"X Porter", style:"Porter"
-b3.beers.create name:"Hefezeizen", style:"Weizen"
-b3.beers.create name:"Helles", style:"Lager"
+b = b1.beers.create name:"Iso 3", style:"Lager"
+r = b.ratings.create score:10
+u.ratings << r
+r = b.ratings.create score:13
+u2.ratings << r
+
+b = b1.beers.create name:"Karhu", style:"Lager"
+r = b.ratings.create score:12
+u.ratings << r
+r = b.ratings.create score:14
+u2.ratings << r
+
+b = b1.beers.create name:"Tuplahumala", style:"Lager"
+r = b.ratings.create score:15
+u.ratings << r
+r = b.ratings.create score:17
+u2.ratings << r
+
+b = b2.beers.create name:"Huvila Pale Ale", style:"Pale Ale"
+r = b.ratings.create score:11
+u.ratings << r
+
+
+b = b2.beers.create name:"X Porter", style:"Porter"
+r = b.ratings.create score:19
+u.ratings << r
+r = b.ratings.create score:16
+u2.ratings << r
+
+b = b3.beers.create name:"Hefezeizen", style:"Weizen"
+r = b.ratings.create score:17
+u.ratings << r
+r = b.ratings.create score:23
+u2.ratings << r
+
+b = b3.beers.create name:"Helles", style:"Lager"
+
+r = b.ratings.create score:18
+u2.ratings << r
+
+
+
+
 

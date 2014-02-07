@@ -5,6 +5,14 @@ gem 'rails', '4.0.2'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 
+group :test do
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 2.14.1'
+end
+
 gem 'byebug', group: [:development, :test]
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
