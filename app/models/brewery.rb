@@ -33,11 +33,8 @@ class Brewery < ActiveRecord::Base
   end
 
    def user_ratings(user)
-
-    self.ratings.where(user: user).average("score")
-
+    ratings.where(user: user).average("score")
    end
-
   
   def restart
     self.year = 2014

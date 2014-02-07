@@ -54,7 +54,11 @@ b = b3.beers.create name:"Helles", style:"Lager"
 r = b.ratings.create score:18
 u2.ratings << r
 
+c = BeerClub.create name:"Kaljaveikot", founded:1999, city:"Turku"
+c2 = BeerClub.create name:"Oluen ystävät", founded:2003, city:"Helsinki"
+c3 = BeerClub.create name:"Mallas ry.", founded:1987, city:"Tampere"
 
-
-
-
+u.beer_clubs << c
+u.beer_clubs << c3
+u2.beer_clubs << c2
+u2.beer_clubs << c3

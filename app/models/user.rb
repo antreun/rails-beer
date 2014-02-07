@@ -42,8 +42,8 @@ class User < ActiveRecord::Base
     count.each do |c|
       styles[c.first] /=  count[c.first]
     end
-    styles.sort_by{|k,v| v}
-    styles.to_a.last.first
+    return styles.max_by{|k,v| v}.first
+
   end
 
   def favorite_brewery
@@ -51,9 +51,10 @@ class User < ActiveRecord::Base
     averages = Hash.new
     b = Brewery.all
     b.each do |brewery|
-      averages[brewery] = brewery.user_ratings(self)
+      if not brewery.user_ratings(self).nil?
+        averages[brewery] = brewery.user_ratings(self)
+      end
     end
-    averages.sort_by{|k,v| v}
-    averages.to_a.last.first
-end
+    return averages.max_by{|k,v| v}.first
+  end
 end
