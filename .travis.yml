@@ -1,10 +1,19 @@
 language: ruby
-
 rvm:
- - 2.0.0
-
+- 2.0.0
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: c/bTr4R73oRlAtomUwIZgEBBg9rDxg8rQOCSvmv3FYn3ph4k0E3sCc5yRdETm5G31BQD0fJ3iyipJhOb7xY/nvD66w+1+4meVPfuAIFrVjOEhfw4GYycwEAk7yblWuNq3V0MhFxPnmpsxOJlSkHUAb+WUc7Fd/8G8Bj1GMbiWIg=
+  app: damp-falls-2903
+  on:
+    repo: areunamo/rails-beer
+  run:
+    - "rake db:migrate"
+    - restart
+    - "rake cleanup"
