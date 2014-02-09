@@ -1,4 +1,4 @@
-== README
+
 
 Linkki Herokuun: http://damp-falls-2903.herokuapp.com/breweries
 
