@@ -33,6 +33,23 @@ describe "User" do
       click_button('Create User')
     }.to change{User.count}.by(1)
   end
+
+
+  it "has ratings shown correctly on the page" do
+    brewery = FactoryGirl.create :brewery, name:"Koff" 
+    beer1 = FactoryGirl.create :beer, name:"iso 3", brewery:brewery 
+    beer2 = FactoryGirl.create :beer, name:"Karhu", brewery:brewery 
+    u2 = FactoryGirl.create :user, username:"Testi"
+    FactoryGirl.create :rating, beer:beer1, user:User.first, score:'15' 
+    FactoryGirl.create :rating, beer:beer2, user:User.first, score:'25' 
+    FactoryGirl.create :rating, beer:beer2, user:u2, score:'22' 
+    sign_in(username:"Pekka", password:"Foobar1")
+    visit user_path(User.first)
+    expect(page).to have_content 'made 2 ratings'
+    visit user_path(u2)
+    expect(page).to have_content 'made 1 rating'
+
 end
 
 
+end
