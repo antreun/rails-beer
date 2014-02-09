@@ -13,6 +13,7 @@ end
 
 group :test do
   gem 'rspec-rails', '~> 2.14.1'
+  gem 'simplecov', require: false
 end
 
 gem 'byebug', group: [:development, :test]
