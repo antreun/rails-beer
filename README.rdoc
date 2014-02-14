@@ -1,5 +1,0 @@
-== README
-
-Linkki Herokuun: http://damp-falls-2903.herokuapp.com/breweries
-
-[![Build Status](https://travis-ci.org/areunamo/rails-beer-public.png)](https://travis-ci.org/areunamo/rails-beer-public)
