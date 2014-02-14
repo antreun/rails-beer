@@ -33,6 +33,8 @@ end
 
   it "allows user to create a beer with correct name" do
     FactoryGirl.create(:brewery, name: "Koff", year: 1999)
+    FactoryGirl.create(:user)
+    sign_in(username:"Pekka", password:"Foobar1")
     visit beers_path
     click_link "New Beer"
     fill_in('Name', with:'Testbeer')
@@ -50,6 +52,8 @@ end
 
   it "does not allow user to create beer without a name" do
     FactoryGirl.create(:brewery, name: "Koff", year: 1999)
+    FactoryGirl.create(:user)
+    sign_in(username:"Pekka", password:"Foobar1")
     visit beers_path
     click_link "New Beer"
     fill_in('Name', with:'')
