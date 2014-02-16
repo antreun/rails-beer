@@ -62,3 +62,5 @@ u.beer_clubs << c
 u.beer_clubs << c3
 u2.beer_clubs << c2
 u2.beer_clubs << c3
+
+Settings.beermapping_apikey = "71b805e235889c824b7aeb51f38045d3"
