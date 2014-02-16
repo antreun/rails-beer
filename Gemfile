@@ -5,10 +5,15 @@ gem 'rails', '4.0.2'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 
+gem 'httparty'
+
+gem "rails-settings-cached", "0.3.1"
+
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'webmock'
 end
 
 group :test do
