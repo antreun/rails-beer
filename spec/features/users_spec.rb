@@ -4,6 +4,7 @@ include OwnTestHelper
 
 describe "User" do
   before :each do
+    create_styles
     FactoryGirl.create :user
   end
 

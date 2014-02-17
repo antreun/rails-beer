@@ -7,6 +7,7 @@ describe "Rating" do
   let!(:user) { FactoryGirl.create :user }
 
   before :each do
+    create_styles
     sign_in(username:"Pekka", password:"Foobar1")
   end
 

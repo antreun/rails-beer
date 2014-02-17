@@ -19,8 +19,11 @@ describe "Ratings on user page" do
   let!(:rating) { FactoryGirl.create :rating, beer:beer1, user:user, score:'15' }
   let!(:rating2) { FactoryGirl.create :rating, beer:beer2, user:user, score:'25' }
 
+
   before :each do
+    create_styles
     sign_in(username:"Pekka", password:"Foobar1")
+
   end
 
   it "lists the ratings and their total number" do

@@ -13,18 +13,22 @@ class BeersController < ApplicationController
   # GET /beers/1
   # GET /beers/1.json
   def show
+    @rating = Rating.new
+    @rating.beer = @beer
+    @style = Style.find_by :id => @beer.style_id
   end
 
   # GET /beers/new
  def new
    @beer = Beer.new
+   @styles = Style.all
    
 
  end
 
   # GET /beers/1/edit
   def edit
-
+    @styles = Style.all
 
   end
 
@@ -40,7 +44,7 @@ class BeersController < ApplicationController
         format.json { render action: 'show', status: :created, location: @beer }
       else
         @breweries = Brewery.all
-        @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+        #@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
 
         format.html { render action: 'new' }
         format.json { render json: @beer.errors, status: :unprocessable_entity }
@@ -76,17 +80,17 @@ class BeersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_beer
       @beer = Beer.find(params[:id])
+    
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beer_params
-      params.require(:beer).permit(:name, :style, :brewery_id)
+      params.require(:beer).permit(:name, :style_id, :brewery_id)
     end
 
   def set_breweries_and_styles_for_template
     @breweries = Brewery.all
-    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+    #@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
   end
-
 
 end

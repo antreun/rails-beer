@@ -81,16 +81,18 @@ describe User do
 			end
 
 			it "is the only rated if only one rating" do
-				beer = FactoryGirl.create(:beer, style:"Lager")
+				create_styles
+				beer = FactoryGirl.create(:beer, style_id:2)
 				rating = FactoryGirl.create(:rating, beer:beer, user:user)
-				expect(user.favorite_style).to eq(beer.style)
+				expect(user.favorite_style).to eq(Style.find_by :id => beer.style_id)
 			end
 
 			it "is the one with highest ratings if several rated" do
-		        create_beers_with_style_and_ratings(12, 22, 17, 9, 11, "Pale Ale", user)
-				best = FactoryGirl.create(:beer, style:"Best style")
+				create_styles
+		        create_beers_with_style_and_ratings(12, 22, 17, 9, 11, 2, user)
+				best = FactoryGirl.create(:beer, style_id:2)
 				rating = FactoryGirl.create(:rating, beer:best, user:user, score:25)
-			  	expect(user.favorite_style).to eq(best.style)
+			  	expect(user.favorite_style).to eq(Style.find_by :id => best.style_id)
 			end
 		end
 
@@ -107,12 +109,14 @@ describe User do
 			end
 
 			it "is the only rated if only one rating" do
-				beer = FactoryGirl.create(:beer, style:"Lager")
+				create_styles
+				beer = FactoryGirl.create(:beer, style_id:2)
 				rating = FactoryGirl.create(:rating, beer:beer, user:user)
 				expect(user.favorite_brewery).to eq(beer.brewery)
 			end
 
 			it "is the one with highest ratings if several rated" do
+				create_styles
 				brewery1 = FactoryGirl.create(:brewery)
 				brewery2 = FactoryGirl.create(:brewery, name:"testbrewery")
 		        create_beers_with_brewery_and_ratings(12, 22, 17, 9, 11, brewery1, user)
@@ -139,7 +143,7 @@ describe User do
 
 	def create_beers_with_style_and_ratings(*scores, style, user)
 	  scores.each do |score|
-	    beer = FactoryGirl.create(:beer, style:style)
+	    beer = FactoryGirl.create(:beer, style_id:style)
     	FactoryGirl.create(:rating, score:score, beer:beer, user:user)
 	  end
 	end

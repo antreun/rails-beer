@@ -1,5 +1,13 @@
 Ratebeer::Application.routes.draw do
 
+  resources :places, only:[:index, :show]
+  # mikä generoi samat polut kuin seuraavat kaksi     
+  # get 'places', to:'places#index'
+  # get 'places/:id', to:'places#show'
+  post 'places', to:'places#search'
+
+  resources :styles, only:[:index, :show]
+
   resources :memberships
 
   resources :beer_clubs

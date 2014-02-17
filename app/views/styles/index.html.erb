@@ -1,0 +1,16 @@
+<h2>List of styles</h2>
+
+<p>Number of styles <%= @styles.count %></p>
+<ul>
+ <% @styles.each do |style| %>
+    <li>
+    	<%= link_to style.name, style %>
+    </li>
+ <% end %>
+</ul>
+
+
+
+
+
+

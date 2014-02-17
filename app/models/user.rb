@@ -31,18 +31,19 @@ class User < ActiveRecord::Base
     styles = Hash.new
     count = Hash.new
     ratings.each do |rating|
-      if styles[rating.beer.style].nil?
-        styles[rating.beer.style] = rating.score
-        count[rating.beer.style] = 1
+      if styles[rating.beer.style_id].nil?
+        styles[rating.beer.style_id] = rating.score
+        count[rating.beer.style_id] = 1
       else
-        styles[rating.beer.style] += rating.score
-        count[rating.beer.style] += 1
+        styles[rating.beer.style_id] += rating.score
+        count[rating.beer.style_id] += 1
       end
     end
     count.each do |c|
       styles[c.first] /=  count[c.first]
     end
-    return styles.max_by{|k,v| v}.first
+    styleid = styles.max_by{|k,v| v}.first
+    return Style.find_by :id => styleid
 
   end
 

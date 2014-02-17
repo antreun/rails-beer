@@ -1,21 +1,11 @@
-<h1>Beer places search</h1>
-
 <p id="notice"><%= notice %></p>
 
-<%= form_tag places_path do %>
-  city <%= text_field_tag :city, params[:city] %>
-  <%= submit_tag "Search" %>
-<% end %>
+<h1><%= @place.name %></h1>
+ 
+<p><%= @place.street %></p>
+<p><%= @place.zip %> <%= @place.city %></p>
 
-<% if @places %>
-<br />
-<h2>Results:</h2>
-    <% @places.each do |place| %>
-        <% @url = places_path + "/" + place.id %>
-        <%= link_to place.name, @url %>
-        <br />
-    <% end %>
-
+<iframe src="<%= @place.blogmap %>" width=500 height=400></iframe>
 <!--
   <table>
     <thead>
@@ -34,4 +24,3 @@
 
   !-->
 
-<% end %>
