@@ -20,7 +20,7 @@
 <% else %>
 <p>
 	Has <%= pluralize(@beer.ratings.count, "rating") %>, 
-	average <%= @beer.average_rating %>
+	average <%= round(@beer.average_rating) %>
 </p>
 <% end %>
 
@@ -35,9 +35,8 @@
   <% end %>
   <br />
 
-  <%= link_to 'Edit', edit_beer_path(@beer) if current_user %>
-  <%= link_to 'Destroy', beer_path, method: :delete, data: { confirm: 'Are you sure?' } if current_user %>
-
 <% end %>
+
+<%= edit_and_destroy_buttons(@beer) %>
 
 <%= link_to 'Back', beers_path %>

@@ -17,7 +17,7 @@ no clubs</p>
 <% else %>
 <p>
 	Has made <%= pluralize(@user.ratings.count, "rating") %>, 
-	average <%= @user.average_rating %>
+	average <%= round(@user.average_rating) %>
 </p>
 <p>
   Favorite beer style: <%= @user.favorite_style %>

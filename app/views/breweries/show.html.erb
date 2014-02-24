@@ -18,10 +18,10 @@ Established in <%= @brewery.year %>
 <% else %>
 <p>
 	Has <%= pluralize(@brewery.ratings.count, "rating") %>, 
-	average <%= @brewery.average_rating %>
+	average <%= round(@brewery.average_rating) %>
 </p>
 <% end %>
 
-<%= link_to('Edit', edit_brewery_path(@brewery)) if current_user %>
-<%= link_to 'Destroy', brewery_path, method: :delete, data: { confirm: 'Are you sure?' } if current_user %>
+<%= edit_and_destroy_buttons(@brewery) %>
+
 <%= link_to 'Back', breweries_path %>
