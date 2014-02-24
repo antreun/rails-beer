@@ -11,6 +11,7 @@ gem "rails-settings-cached", "0.3.1"
 
 gem 'jquery-turbolinks'
 
+gem 'rack-mini-profiler'
 
 
 group :test do

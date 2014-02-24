@@ -7,7 +7,8 @@ class BeersController < ApplicationController
   # GET /beers
   # GET /beers.json
   def index
-    @beers = Beer.all
+    @beers = Beer.includes(:brewery).all
+    
     order = params[:order] || 'name'
 
     case order
@@ -17,7 +18,6 @@ class BeersController < ApplicationController
     end
   
   end
-
 
   def list
   end
