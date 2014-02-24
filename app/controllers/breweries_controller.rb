@@ -21,6 +21,9 @@ class BreweriesController < ApplicationController
   def show
   end
 
+  def nglist
+  end
+
   # GET /breweries/new
   def new
     @brewery = Brewery.new
