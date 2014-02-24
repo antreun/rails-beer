@@ -15,5 +15,8 @@ class Beer < ActiveRecord::Base
   		"#{name} (#{brewery.name})"
   end
 
+  def style
+  		Style.find_by :id => style_id
+  end
 
 end

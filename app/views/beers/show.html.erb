@@ -35,7 +35,8 @@
   <% end %>
   <br />
 
-  <%= link_to 'Edit', edit_beer_path(@beer) %>
+  <%= link_to 'Edit', edit_beer_path(@beer) if current_user %>
+  <%= link_to 'Destroy', beer_path, method: :delete, data: { confirm: 'Are you sure?' } if current_user %>
 
 <% end %>
 
