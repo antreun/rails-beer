@@ -1,7 +1,9 @@
 <h1>Listing beers</h1>
 <p id="notice"><%= notice %></p>
-<p>Number of beers: <%= @beers.count %></p>
 
+<% cache "beerlist-#{@order}", skip_digest: true do %>
+
+<p>Number of beers: <%= @beers.count %></p>
 <table>
   <thead>
     <tr>
@@ -22,6 +24,7 @@
   </tbody>
 </table>
 
+<% end %>
 <br>
 
 <%= link_to('New Beer', new_beer_path) if current_user %>

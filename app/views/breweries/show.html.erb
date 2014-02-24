@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% cache @brewery do %>
+
  <h2><%= @brewery.name %></h2>
 
 <p style="font-style: italic">
@@ -21,6 +23,10 @@ Established in <%= @brewery.year %>
 	average <%= round(@brewery.average_rating) %>
 </p>
 <% end %>
+
+<% end %>
+
+<!- cachaamaton osa ->
 
 <%= edit_and_destroy_buttons(@brewery) %>
 
